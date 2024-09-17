@@ -25,6 +25,35 @@
       </nav>
       <hr class="hr" />
       <button class="btn-reporte">Nuevo reporte</button>
+  <!-- Modal para Nuevo Reporte (Estilo Moderno con fondo blanco) -->
+<div id="new-report-modal" class="modal">
+  <div class="modal-content-modern">
+    <span class="close">&times;</span>
+    <h2>Nuevo Reporte</h2>
+    <div class="profile-section">
+      <img src="img/ROSEL.jpeg" alt="Perfil" class="profile-img">
+      <div class="user-info">
+        <p>RossMdz9501</p>
+       
+      </div>
+    </div>
+    
+    <textarea id="report-text" rows="4" placeholder="¿Qué tienes en mente?" required></textarea>
+    
+    <div class="icons-bar">
+      <label for="report-image">
+        <i class="fas fa-image"></i> Foto
+        <input type="file" id="report-image" accept="image/*" style="display:none;" required />
+      </label>
+
+      <i class="fas fa-map-marker-alt"></i> Ubicación
+    </div>
+    
+    <button type="submit" id="submit-post">Publicar</button>
+  </div>
+</div>
+
+
     </header>
 
     <main>
@@ -93,5 +122,89 @@
         
       </section>
     </main>
+
+    <script>
+      const modal = document.getElementById('new-report-modal');
+      const btnNuevoReporte = document.querySelector('.btn-reporte');
+      const spanCerrar = document.querySelector('.close');
+      const submitPost = document.getElementById('submit-post');
+    
+      // Abrir el modal
+      btnNuevoReporte.onclick = function() {
+        modal.style.display = 'block';
+      }
+    
+      // Cerrar el modal cuando se presiona la "x"
+      spanCerrar.onclick = function() {
+        modal.style.display = 'none';
+      }
+    
+      // Cerrar el modal si se hace clic fuera del contenido
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
+    
+      // Publicar el nuevo reporte
+      submitPost.onclick = function(event) {
+        event.preventDefault();
+        const descripcion = document.getElementById('report-text').value;
+        const imagen = document.getElementById('report-image').files[0];
+    
+        if (descripcion && imagen) {
+          const nuevoReporte = document.createElement('article');
+          nuevoReporte.classList.add('section-report');
+    
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            nuevoReporte.innerHTML = `
+            <article class="section-report">
+              <div class="report-content">
+                <div class="report-content-texts">
+                  <div class="report-img">
+                    <img src="img/ROSEL.jpeg" alt="Imagen del reporte" class="report-img"/>
+                  </div>
+                  <div class="report-text">
+                    <h1>RossMdz9501</h1>
+                    <p>${descripcion}</p>
+                    <div class="report-hashtag">
+                      <p>#NuevoReporte</p>
+                    </div>
+                    <p class="location">📍 Coyoacan, CDMX</p>
+                  </div>
+                </div>
+                <div class="report-content-img">
+                  <img src="${e.target.result}" alt="Imagen del reporte" />
+                </div>
+                <div class="interaction-buttons">
+                  <div class="icons">
+                    <div class="comment-button">💬 Comentar</div>
+                    <div class="likes">🔄 <p>0</p></div>
+                    <div class="likes">❤️ <p>0</p></div>
+                    <div class="likes">⚠️ <p>0</p></div>
+                    <div class="likes">😢 <p>0</p></div>
+                  </div>
+                </div>
+              </div>
+               </article>
+            `;
+            
+            document.querySelector('main .content-section').appendChild(nuevoReporte);
+          };
+    
+          reader.readAsDataURL(imagen);
+    
+          modal.style.display = 'none';
+          document.getElementById('report-text').value = '';
+          document.getElementById('report-image').value = '';
+        } else {
+          alert('Por favor, añade una imagen y una descripción.');
+        }
+      }
+    </script>
+    
+    
+    
   </body>
 </html>

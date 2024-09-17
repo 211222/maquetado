@@ -170,6 +170,8 @@
     border-radius: 24px;
     padding-left: 30px;
     padding-bottom: 40px;
+      
+    
   }
   
   .report-img {
@@ -195,6 +197,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    
+    
   }
   
   .report-hashtag {
@@ -441,3 +445,89 @@
       padding: 15px;
     }
   }
+/* Estilos para el modal con fondo blanco */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-modern {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+  width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info select {
+  background: #f0f0f0;
+  color: #000;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #000;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.icons-bar {
+  
+  justify-content:center;
+  align-items: center;
+  margin-bottom: 15px;
+  
+}
+
+.icons-bar i {
+  cursor: pointer;
+  color: #555;
+}
+
+.icons-bar label {
+  cursor: pointer;
+}
+
+#submit-post {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}

@@ -25,7 +25,8 @@
       </nav>
       <hr class="hr" />
       <button class="btn-reporte">Nuevo reporte</button>
-  <!-- Modal para Nuevo Reporte (Estilo Moderno con fondo blanco) -->
+
+<!-- Modal para Nuevo Reporte (Estilo Moderno con fondo blanco) -->
 <div id="new-report-modal" class="modal">
   <div class="modal-content-modern">
     <span class="close">&times;</span>
@@ -34,11 +35,15 @@
       <img src="img/ROSEL.jpeg" alt="Perfil" class="profile-img">
       <div class="user-info">
         <p>RossMdz9501</p>
-       
       </div>
     </div>
     
     <textarea id="report-text" rows="4" placeholder="¿Qué tienes en mente?" required></textarea>
+
+    <!-- Contenedor para mostrar la imagen seleccionada -->
+    <div class="image-preview">
+      <img id="image-preview" src="" alt="Imagen seleccionada" style="display:none; width: 100%; max-height: 200px; object-fit: cover;" />
+    </div>
     
     <div class="icons-bar">
       <label for="report-image">
@@ -52,6 +57,7 @@
     <button type="submit" id="submit-post">Publicar</button>
   </div>
 </div>
+
 
 
     </header>
@@ -202,6 +208,27 @@
           alert('Por favor, añade una imagen y una descripción.');
         }
       }
+
+      // Captura del elemento input de archivo y el elemento de previsualización de imagen
+const reportImageInput = document.getElementById('report-image');
+const imagePreview = document.getElementById('image-preview');
+
+// Evento para mostrar la imagen cuando el usuario selecciona un archivo
+reportImageInput.addEventListener('change', function(event) {
+  const file = event.target.files[0]; // Captura el primer archivo (si hay más de uno)
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      // Muestra la imagen seleccionada en el modal
+      imagePreview.src = e.target.result;
+      imagePreview.style.display = 'block'; // Asegúrate de que se muestre
+    }
+
+    reader.readAsDataURL(file); // Lee el archivo como una URL de datos
+  }
+});
     </script>
     
     
